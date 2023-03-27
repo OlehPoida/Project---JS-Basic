@@ -107,8 +107,10 @@ function everyEmployeeTellAboutHimself(team) {
 
 function showTeam(team) {
 team.showTeam = function() {
+
     console.log('Show Team:');
     document.write('<br/><span style =\"background-color:yellow\">Show Team:</span><br/><br/>');
+    
     for (let key in team) {
         if (typeof team[key] !== 'function' && team.hasOwnProperty(key)) {
             console.log(team[key].name + " - " + team[key].position + '. Salary - ' + team[key].salary + ' $<br/><br/>');  
