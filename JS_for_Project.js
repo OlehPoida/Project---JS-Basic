@@ -37,13 +37,13 @@ let positionEmpl = ['Junior developer', 'Middle developer', 'Senior developer', 
 
 function getNames() {
     let nameEmpl = [];
-    
+
     for (let i = 0; i < positionEmpl.length; i++) {
         let validInput = false;
-        
+
         while (!validInput) {
             nameEmpl[i] = prompt("Enter the employee's name - " + positionEmpl[i]);
-            
+
             if (nameEmpl[i] === null) {
                 alert("Error! It is impossible to cancel the entry of the specified information!\nThis field is mandatory!");
             } else if (!/^[\p{L}\s()"-'.,]+$/u.test(nameEmpl[i].trim())) {
@@ -57,7 +57,7 @@ function getNames() {
 }
 
 function createTeam(nameEmpl) {
-    let team = {}; 
+    let team = {};
     for (let i = 0; i < positionEmpl.length; i++) {
         let name = nameEmpl[i];
         let position = positionEmpl[i];
@@ -65,9 +65,9 @@ function createTeam(nameEmpl) {
             name: name,
             position: position,
             salary: 0,
-            tellAboutYourSelf: function() {
-                console.log("My name is - " + this.name  + " and I am - " + this.position + '. I earn - ' + this.salary + ' $');
-                document.write("My name is - " + this.name  + " and I am - " + this.position + '. I earn  - ' + this.salary + ' $<br/><br/>');  
+            tellAboutYourSelf: function () {
+                console.log("My name is - " + this.name + " and I am - " + this.position + '. I earn - ' + this.salary + ' $');
+                document.write("My name is - " + this.name + " and I am - " + this.position + '. I earn  - ' + this.salary + ' $<br/><br/>');
             }
         }
     }
@@ -80,18 +80,18 @@ function getRandomIntInclusive(min, max) {
 
 function setSalary(team) {
     for (let i = 0; i < positionEmpl.length; i++) {
-    let position = team[i].position;
-    let salary;
-    if (position.indexOf('Junior') > -1) {
-        salary = getRandomIntInclusive(500, 1000);
-    } else if (position.indexOf('Middle') > -1) {
-        salary = getRandomIntInclusive(1500, 2000);
-    } else if (position.indexOf('Senior') > -1) {
-        salary = getRandomIntInclusive(2500, 3000);
-    } else {
-        salary = getRandomIntInclusive(4000, 4500);
-    }
-    team[i].salary = salary;
+        let position = team[i].position;
+        let salary;
+        if (position.indexOf('Junior') > -1) {
+            salary = getRandomIntInclusive(500, 1000);
+        } else if (position.indexOf('Middle') > -1) {
+            salary = getRandomIntInclusive(1500, 2000);
+        } else if (position.indexOf('Senior') > -1) {
+            salary = getRandomIntInclusive(2500, 3000);
+        } else {
+            salary = getRandomIntInclusive(4000, 4500);
+        }
+        team[i].salary = salary;
     }
 }
 
@@ -99,37 +99,37 @@ function everyEmployeeTellAboutHimself(team) {
 
     console.log('Every Employee Tell About Himself:');
     document.write('<span style =\"background-color:yellow\">Every Employee Tell About Himself:</span><br/><br/>');
-    
+
     for (let key in team) {
         team[key].tellAboutYourSelf();
     }
 }
 
 function showTeam(team) {
-team.showTeam = function() {
+    team.showTeam = function () {
 
-    console.log('Show Team:');
-    document.write('<br/><span style =\"background-color:yellow\">Show Team:</span><br/><br/>');
-    
-    for (let key in team) {
-        if (typeof team[key] !== 'function' && team.hasOwnProperty(key)) {
-            console.log(team[key].name + " - " + team[key].position + '. Salary - ' + team[key].salary + ' $<br/><br/>');  
-            document.write(team[key].name + " - " + team[key].position + '. Salary - ' + team[key].salary + ' $<br/><br/>');  
+        console.log('Show Team:');
+        document.write('<br/><span style =\"background-color:yellow\">Show Team:</span><br/><br/>');
+
+        for (let key in team) {
+            if (typeof team[key] !== 'function' && team.hasOwnProperty(key)) {
+                console.log(team[key].name + " - " + team[key].position + '. Salary - ' + team[key].salary + ' $<br/><br/>');
+                document.write(team[key].name + " - " + team[key].position + '. Salary - ' + team[key].salary + ' $<br/><br/>');
+            }
         }
-    }   
-}  
-team.showTeam();
-} 
+    }
+}
 
 function runTeam() {
     let nameEmpl = getNames();
     let team = createTeam(nameEmpl);
     setSalary(team);
     everyEmployeeTellAboutHimself(team);
+    team.showTeam();
     showTeam(team);
 }
 runTeam();
 
- 
+
 
 
